@@ -21,8 +21,8 @@ public class Sudoku extends javax.swing.JFrame {
     
     ArrayList[] rows = new ArrayList[9];
     ArrayList[] cols = new ArrayList[9];
-    ArrayList[][] boxes = new ArrayList[3][3];
-    int[][] solution = new int[9][9];
+    ArrayList[][] boxes = new ArrayList[3][3]; // 3x3 Boxes
+    int[][] solution = new int[9][9]; // Solution Grid
     int[][] board = new int[9][9];
     JButton[][] boardInputs = new JButton[9][9];
     JButton[] numberInputs = new JButton[9];
@@ -58,7 +58,7 @@ public class Sudoku extends javax.swing.JFrame {
             }
         }
         
-        // Initialize board
+        // Initialize board 9x9 Grid
         for(int i = 0; i < 9; i++) {
             for(int j = 0; j < 9; j++) {
                 board[i][j] = 0;
@@ -98,10 +98,11 @@ public class Sudoku extends javax.swing.JFrame {
     
     public void createGrid() {
         int count = 0;
+        // Setting 20 numbers at any random positions in Grid
         while(count != 20) {
-            int i = (int)(Math.random()*9);
+            int i = (int)(Math.random()*9); // Genarete any random no between 0 to 8
             int j = (int)(Math.random()*9);
-            int num = (int)(Math.random()*9) + 1;
+            int num = (int)(Math.random()*9) + 1; // Genarete any random no between 0 to 8 + 1
             if(board[i][j]==0 && isValid(i,j,num)) {
                 count++;
                 addToGrid(i,j,num);
@@ -1773,11 +1774,13 @@ public class Sudoku extends javax.swing.JFrame {
         setValueInInput(8, 7);
     }//GEN-LAST:event_b80ActionPerformed
 
+    /* EXIT BUTTON */
     private void jButton104ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton104ActionPerformed
         // TODO add your handling code here:
         System.exit(0);
     }//GEN-LAST:event_jButton104ActionPerformed
 
+    /* DISPLAY SOLUTION BUTTON */
     private void jButton105ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton105ActionPerformed
         // TODO add your handling code here:
         for(int i=0; i<9; i++) {
@@ -1790,6 +1793,7 @@ public class Sudoku extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton105ActionPerformed
 
+    /* RESET BUTTON */
     private void jButton103ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton103ActionPerformed
         // TODO add your handling code here:
         for(int i=0; i<9; i++) {
@@ -1802,6 +1806,7 @@ public class Sudoku extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton103ActionPerformed
 
+    /* CHECK BUTTON */
     private void jButton106ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton106ActionPerformed
         // TODO add your handling code here:
         for(int i=0; i<9; i++) {
