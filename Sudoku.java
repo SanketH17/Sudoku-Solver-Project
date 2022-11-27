@@ -20,12 +20,12 @@ public class Sudoku extends javax.swing.JFrame {
     }
     
     ArrayList[] rows = new ArrayList[9];
-    ArrayList[] cols = new ArrayList[9];
+    ArrayList[] cols = new ArrayList[9]; 
     ArrayList[][] boxes = new ArrayList[3][3]; // 3x3 Boxes
     int[][] solution = new int[9][9]; // Solution Grid
-    int[][] board = new int[9][9];
+    int[][] board = new int[9][9]; // To store User's inputs values and while the time of checking we will check values of boards and solution
     JButton[][] boardInputs = new JButton[9][9];
-    JButton[] numberInputs = new JButton[9];
+    JButton[] numberInputs = new JButton[9]; // To take user inputs which are 1 to 9 numbers
     int curNum = 1;
     
     
@@ -56,7 +56,7 @@ public class Sudoku extends javax.swing.JFrame {
                 ArrayList temp = new ArrayList();
                 boxes[i][j] = temp;
             }
-        }
+        }   
         
         // Initialize board 9x9 Grid
         for(int i = 0; i < 9; i++) {
@@ -78,24 +78,27 @@ public class Sudoku extends javax.swing.JFrame {
             {b64, b65, b66, b67, b68, b69, b70, b71, b72},
             {b73, b74, b75, b76, b77, b78, b79, b80, b81}
         };
+        // Initialise the number inputs as well
         numberInputs = new JButton[] {
             i1, i2, i3, i4, i5, i6, i7, i8, i9
         };
     }
     
     public boolean isValid(int i, int j, int num) {
-        if(rows[i].contains(num)) return false;
+        if(rows[i].contains(num)) return false; // If already that num is present in row[i] position then we no need to add again at that position return false
         if(cols[j].contains(num)) return false;
         else if(boxes[(int)(Math.floor((double)i/3))][(int)(Math.floor((double)j/3))].contains(num)) return false;
         return true;
     }
     
+    // Add the number in particular cell using this function
     public void addToGrid(int i, int j, int num) {
         rows[i].add(num);
         cols[j].add(num);
         boxes[(int)(Math.floor((double)i/3))][(int)(Math.floor((double)j/3))].add(num);
     }
     
+    // Putting 20 prefilled random values using this function
     public void createGrid() {
         int count = 0;
         // Setting 20 numbers at any random positions in Grid
@@ -112,7 +115,7 @@ public class Sudoku extends javax.swing.JFrame {
         }
     }
     
-    
+    // Print the initial prefilled values in the grid
     public void printInitialGrid() {
         for(int i=0; i<9; i++) {
             for(int j=0; j<9; j++) {
@@ -129,6 +132,7 @@ public class Sudoku extends javax.swing.JFrame {
             }
         }
     }
+    
     
     public boolean generateSolution(int i, int j) {
         if(i == 9) return true;
@@ -161,10 +165,14 @@ public class Sudoku extends javax.swing.JFrame {
         return b;
     }
     
+    // When we click on any particular cell
+    // Number selected is added to that field
     public void setValueInInput(int i, int j) {
         if(board[i][j] == 0) boardInputs[i][j].setText(Integer.toString(curNum));
     }
     
+    
+    // Selecting the number which we want to put into the grid between 1 to 9
     public void selectNumber(int num) {
         int prevNum = curNum;
         JButton prevSelected = numberInputs[prevNum-1];
